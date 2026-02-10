@@ -3,13 +3,19 @@ services:
     image: 'postgres:latest'
     ports:
       - 15432:5432
-    env_file:
-      - ./backend/.env
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres"
   backend:
     build: ./backend
     ports:
       - 8000:8000
     env_file:
       - ./backend/.env
+    environment:
+      - PYTHONBUFFERED=1
+    volumes:
+      - ./backend/src:/backend/src
     depends_on:
       - db

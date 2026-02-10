@@ -5,7 +5,7 @@ from src.database.database import Base
 class Task(Base):
     __tablename__ = "tasks"
     
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     description: Mapped[str] = mapped_column(String(50), nullable=False)
     user_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id"))
     

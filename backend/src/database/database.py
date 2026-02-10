@@ -4,8 +4,14 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-    
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:password@localhost:5432/mydatabase")
+
+POSTGRES_HOST = os.getenv("PGHOST", "localhost")
+POSTGRES_PORT = os.getenv("PGPORT", "5432")
+POSTGRES_USER = os.getenv("PGUSER", "postgres")
+POSTGRES_PASSWORD = os.getenv("PGPASSWORD", "postgres")
+POSTGRES_DB = os.getenv("PGDATABASE", "postgres")
+
+DATABASE_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
 
 engine = create_engine(DATABASE_URL)
 Base = declarative_base()

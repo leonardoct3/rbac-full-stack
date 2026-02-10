@@ -1,9 +1,11 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
+from typing import Optional
 
 class UserCreate(BaseModel):
-    id: int
     name: str
-    fullname: str | None = None
+    password: str
+    email: EmailStr
+    fullname: Optional[str] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
